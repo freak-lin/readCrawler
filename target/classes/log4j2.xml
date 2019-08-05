@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+
+	<!-- 定义变量 -->
+	<Properties>
+      	<property name="basePath">/data/dongfanghao/logs/</property>
+	</Properties>
+	<!--先定义所有的appender -->
+	<appenders>
+		<!--输出控制台的配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+					pattern="%d{DEFAULT} [%t] %-5p %c{36} - %m%n"/>
+		</Console>
+
+		<!--输出到文件-->
+		<RollingFile name="rollingfile_info"
+			filename="${basePath}/${sys:log4j2Filename}_info.log" filePattern="${basePath}/${sys:log4j2Filename}%d{yyyy-MM-dd}_info.log"
+			append="true">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="info" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+
+
+	</appenders>
+	<!--定义logger-->
+	<loggers>
+
+
+	</loggers>
+</configuration>
